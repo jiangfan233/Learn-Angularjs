@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Angularjs</title>
+</head>
+<body ng-controller="app">
+    <app></app>
+
+    <span drag-module>Drag Me</span>
+
+    <div ng-controller="currentTime">
+        Date Format: <input ng-model="formatView" />
+        <p current-time="formatView"></p>
+    </div>
+</body>
+</html>
