@@ -1,6 +1,7 @@
 import angular from "angular";
-import DragModule from "../dragModule/drag.module"
-import CurrentTime from "../currentTime/currentTime"
+import DragModule from "@/dragModule/drag.module"
+import CurrentTime from "@/currentTime/currentTime"
+import Vanilla from "../vanillas/simple-mvc";
 
 const App =  "app";
 
@@ -21,5 +22,7 @@ angular
             template: require("./app.template.html").default
         }
     })
+
+console.log(Vanilla);
 
 export default App;

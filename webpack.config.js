@@ -19,6 +19,9 @@ module.exports = function () {
 
         resolve: {
             extensions: [".ts", '.js', '.html',],
+            alias: {
+                "@": path.resolve(__dirname, 'src/'),
+            },
         },
 
         devServer: {
@@ -40,7 +43,8 @@ module.exports = function () {
             rules: [
                 {
                     test: /\.(ts|js)$/,
-                    exclude: /node_modules/,
+                    // exclude: /node_modules/,
+                    include: path.resolve(__dirname, 'src'),
                     use: [
                         {
                             loader: 'babel-loader',
@@ -52,11 +56,18 @@ module.exports = function () {
                                             targets: { ie: "8" }
                                         }
                                     ],
-                                    ["@babel/preset-typescript"]
+                                    // 不执行类型检查
+                                    // ["@babel/preset-typescript"]
                                 ],
                                 plugins: ['@babel/plugin-transform-runtime'],
                             }
                         },
+                        {
+                            // relies on your tsconfig.json configuration. 
+                            // Make sure to avoid setting module to "CommonJS", 
+                            // or webpack won't be able to tree-shake your code.
+                            loader: "ts-loader",
+                        }
                     ]
                 },
 
