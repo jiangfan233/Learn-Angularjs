@@ -17,6 +17,8 @@
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.21.0",
     "@types/angular": "^1.8.4",
+    "@types/angular-resource": "^1.5.17",
+    "@types/angular-route": "^1.7.2",
     "babel-loader": "^9.1.2",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
@@ -26,6 +28,8 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-    "angular": "^1.6.4"
+    "angular": "^1.6.4",
+    "angular-resource": "^1.8.3",
+    "angular-route": "^1.8.3"
   }
 }

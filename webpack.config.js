@@ -8,7 +8,8 @@ module.exports = function () {
     // console.log(rest)
     return {
         entry: {
-            app: "./src/app/app.module.js",
+            app: "./src/app/app.module.ts",
+            router: "./src/configs/router.ts"
         },
 
         output: {
@@ -75,6 +76,25 @@ module.exports = function () {
                 {
                     test: /\.html$/i,
                     loader: "html-loader",
+                    options: {
+                        sources: {
+                            list: [
+                                // All default supported tags and attributes
+                                "...",
+
+                                {
+                                    tag: "img",
+                                    attribute: "src",
+                                    type: "src",
+                                    filter(tag, attribute, attributes, filePath) {
+                                        const attr = attributes.find(item => item.name === attribute);
+                                        // console.log("ahhhhh", value)
+                                        return !!attr.value;
+                                    }
+                                },
+                            ],
+                        },
+                    },
                 },
             ],
         },

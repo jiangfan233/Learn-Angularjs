@@ -1,0 +1,39 @@
+<form name="createForm" ng-submit="vm.submit(vm.form)" novalidate="novalidate">
+
+    <div>
+        <label for="_email">邮箱</label>
+        <input id="_email" type="email" name="email" ng-model="vm.form.email" ng-required=true field-error>
+    </div>
+
+    <div>
+        <label for="_nickname">昵称</label>
+        <input id="_nickname" type="text" name="nickname" ng-model="vm.form.nickname" ng-required=true field-error>
+    </div>
+
+    <div>
+        <label for="_password">密码</label>
+        <input id="_password" type="password" name="password" ng-model="vm.form.password" ng-required=true field-error>
+    </div>
+
+    <div>
+        <label for="_retypedPassword">确认密码</label>
+        <!-- 不需要提交到后端，前端校验足够，因此不必将其加入到vm.form -->
+        <input id="_retypedPassword" type="password" ng-model="retypedPassword" ng-required=true field-error>
+    </div>
+
+    <div>
+        <label for="_captcha">图形验证码</label>
+        <input id="_captcha" type="text" ng-model="captcha" name="captcha" ng-required=true field-error>
+        <img src="" alt="图形验证码">
+    </div>
+
+    <div>
+        <input id="_accepted" type="chekbox">
+        <label for="_accepted">我已阅读并同意<a href="">用户服务协议</a></label>
+    </div>
+
+    <div>
+        <button type="submit">提交</button>
+    </div>
+
+</form>
