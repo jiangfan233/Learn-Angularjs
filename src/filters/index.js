@@ -2,10 +2,14 @@ import { Errors } from "@/constants/index";
 
 const Filters = "filters";
 
+export const fieldErrorMsg = "fieldErrorMsg";
+
+
 angular.module(Filters, [])
-    .filter("error", [Errors, function(Errors) {
-        return function(name) {
-            return Errors[name] || name;
+    .filter(fieldErrorMsg, [Errors, function(Errors) {
+        return function(name, customMsg={}) {
+            const error = angular.extend({}, Errors, customMsg);
+            return error[name] || name;
         }
     }])
 
