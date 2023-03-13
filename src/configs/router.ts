@@ -1,6 +1,8 @@
 import App from "@/app/app.module";
 import { route } from "angular";
-import { ReaderCreateCtrl } from "@/controllers/reader/create"
+import { ReaderCreateCtrl } from "@/controllers/reader/create";
+import { ThreadListCtrl } from "@/controllers/thread/ThreadListCtrl";
+
 
 App
     .config(['$routeProvider',
@@ -25,6 +27,14 @@ App
                     template: require("@/controllers/reader/create.html").default,
                     controller: ReaderCreateCtrl,
                     // controllerAs: "vm"
+                }).
+                when('/thread', {
+                    template: "<div ui-view></div>",
+                }).
+                when('/thread/list', {
+                    template: require("@/controllers/thread/ThreadListCtrl.html").default,
+                    controller: ThreadListCtrl,
+                    controllerAs: "vm"
                 }).
                 when('/notFound', {
                     template: require("@/controllers/home/notFound.html").default,

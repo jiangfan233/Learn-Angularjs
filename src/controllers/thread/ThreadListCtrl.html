@@ -1,0 +1,107 @@
+<div>
+    <label for="_keyword">过滤条件：</label>
+    <input id="_keyword" type="text" ng-model="vm.filter.$" placeholder="请输入主题、作者或发帖时间的任意部分进行筛选">
+</div>
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>主题</th>
+            <th>作者</th>
+            <th>发帖时间</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="item in vm.items | filter:vm.filter.$ | paginate:vm.pageNumber:vm.pageSize">
+            <td>{{ item.title }}</td>
+            <td>{{ item.poster }}</td>
+            <td>{{ item.dateCreated | date:"yyyy-MM-dd HH:mm:ss" }}</td>
+        </tr>
+    </tbody>
+</table>
+<label for="_pagenation">页号: <input type="number" ng-model="vm.pageNumber" min="1" /></label>
+
+<!-- <hr />
+<div>
+    <label for="_keyword">过滤条件：</label>
+    <input id="_keyword" type="number" ng-model="vm.filter.$id" placeholder="请输入数字" ng-change="vm.search()">
+</div>
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>主题</th>
+            <th>作者</th>
+            <th>发帖时间</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>{{ vm.post.title }}</td>
+            <td>{{ vm.post.userId }}</td>
+            <td>{{ vm.post.body }}</td>
+        </tr>
+    </tbody>
+
+</table> -->
+
+<ul ng-if="vm.items">
+    <li ng-repeat="item1 in vm.items | arrayToTree">
+        <div>
+            <span ng-if="item1.$hasChildren()" ng-click="item1.$foldToggle()">
+                <span ng-if="!item1.$isFolded()">-</span>
+                <span ng-if="item1.$isFolded()">+</span>
+            </span>
+            <label>
+                <input 
+                    type="checkbox"
+                    check-indeterminate="item1.$indeterminate()"
+                    ng-model="item1.$checked"
+                    ng-change="item1.$check(item1.$checked)"
+                />
+            {{item1.title}}</label>
+        </div>
+
+        <ul ng-if="item1.$hasChildren() && !item1.$isFolded()">
+            <li ng-repeat="item2 in item1.items | arrayToTree">
+                <div>
+                    <span ng-if="item2.$hasChildren()" ng-click="item2.$foldToggle()">
+                        <span ng-if="!item2.$isFolded()">-</span>
+                        <span ng-if="item2.$isFolded()">+</span>
+                    </span>
+                    <label>
+                        <input 
+                            type="checkbox"
+                            check-indeterminate="item1.$indeterminate()"
+                            ng-model="item2.$checked"
+                            ng-change="item2.$check(item2.$checked)"
+                        />
+                    {{item2.title}}</label>
+                </div>
+                
+                <ul ng-if="item2.$hasChildren() && !item2.$isFolded()">
+                    <li ng-repeat="item3 in item2.items | arrayToTree">
+                        <div>
+                            <span ng-if="item3.$hasChildren()" ng-click="item3.$foldToggle()">
+                                <span ng-if="!item3.$isFolded()">-</span>
+                                <span ng-if="item3.$isFolded()">+</span>
+                            </span>
+                            <label>
+                                <input 
+                                    type="checkbox"
+                                    check-indeterminate="item2.$indeterminate()"
+                                    ng-model="item3.$checked"
+                                    ng-change="item3.$check(item3.$checked)"
+                                />
+                            {{item3.title}}</label>
+                        </div>
+                        
+                    </li>
+                </ul>
+
+            </li>
+        </ul>
+
+    </li>
+</ul>

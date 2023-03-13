@@ -1,9 +1,11 @@
 import angular from "angular";
 import ngRoute from "angular-route";
 import ngResource from "angular-resource"
-import UtilsModule from "@/utils/index";
+import UtilsModule from "@/factories/index";
 import Constants from "@/constants/index";
 import Filters from "@/filters/index";
+import Directives from "@/directives/index";
+import Services from "@/services/index";
 
 const AppModule =  "com.ngnice.app";
 
@@ -13,7 +15,9 @@ const App = angular
         ngResource,
         UtilsModule,
         Constants,
+        Services,
         Filters,
+        Directives,
     ])
     .controller(AppModule, [
         "$scope",
