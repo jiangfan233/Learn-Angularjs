@@ -40,11 +40,15 @@ angular.module(Services, [])
                 return this.$checked;
             }
 
-            item.$indeterminate = function() {
+            item.$isIndeterminate = function() {
                 if(!this.$hasChildren()) return false;
                 const items = this[childrenName];
-                const checkedItems = items.filter(item => !!item.$isChecked());
+                const checkedItems = items.filter(item => item.$isChecked());
                 return checkedItems.length > 0 && checkedItems.length < items.length;
+                // return {
+                //     isIndeterminate: checkedItems.length > 0 && checkedItems.length < items.length,
+                //     isChecked: checkedItems.length === items.length,
+                // };
             }
 
         }
